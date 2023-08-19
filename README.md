@@ -62,15 +62,15 @@ $ npm run test:cov
 
 ### POST
 ```bash
-/api/auth/reg — SignUp user
+**/api/auth/reg** — SignUp user
   body: name(string), password(string)
   return: token or exception
 
-/api/auth/login — SignIp user
+**/api/auth/login** — SignIp user
   body: name(string), password(string)
   return: token or exception
 
-/api/auth/token-login — SignIn with Token
+**/api/auth/token-login** — SignIn with Token
   cookie: jwt_spectrans: string
   return: User Object
 ```
