@@ -70,7 +70,7 @@ $ npm run test:cov
   body: name(string), password(string)
   return: token or exception
 
-- /api/auth/token-login — SignIn with Token
+/api/auth/token-login — SignIn with Token
   cookie: jwt_spectrans: string
   return: User Object
 ```
