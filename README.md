@@ -89,7 +89,13 @@ Nest is [MIT licensed](LICENSE).
   cookie: jwt_spectrans: string<br/>
   return: User Object<br/>
 
+**/api/categories/add** — Add new category<br/>
+  body: name(string)<br/>
+  cookie: jwt_spectrans: string<br/>
+  return: Category object(_id, name)<br/>
+
 ### GET
 
+**/api/categories** — Get all categoriesy<br/>
+  return: Array of Category object
 
->>>>>>> dd7cfa9b24ea7ee0764739a917ebb3e3c4e35499
