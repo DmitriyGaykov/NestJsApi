@@ -25,7 +25,11 @@ export class JwtAuthGuard implements CanActivate {
       const user = await this.jwtService.verifyAsync<LoggingByTokenUser>(token)
 
       if(!user)
+<<<<<<< HEAD
         throw ''
+=======
+        throw ErrorsService.getNotAuthorizedError()
+>>>>>>> dd7cfa9b24ea7ee0764739a917ebb3e3c4e35499
 
       req['user'] = user
 
