@@ -5,10 +5,11 @@ import { CategoriesDbService } from './categories-db.service';
 import {MongooseModule} from "@nestjs/mongoose";
 import {CategorySchema} from "./model/category.model";
 import {NestjsFormDataModule} from "nestjs-form-data";
-import {_JwtModule, AuthModule} from "../auth/auth.module";
-import {JwtService} from "@nestjs/jwt";
+import {_JwtModule} from "../auth/auth.module";
 import {UsersModule} from "../users/users.module";
 import {ConfigService} from "../config/config.service";
+import {MaterialsModule} from "./materials/materials.module";
+import {FilesService} from "../files/files.service";
 
 
 @Module({
@@ -20,6 +21,7 @@ import {ConfigService} from "../config/config.service";
         }
       ]),
       UsersModule,
+      MaterialsModule,
       _JwtModule,
       NestjsFormDataModule
   ],

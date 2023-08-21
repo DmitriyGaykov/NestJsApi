@@ -6,9 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import {ServeStaticModule} from "@nestjs/serve-static";
 import {join} from "path";
 import { CategoriesModule } from './categories/categories.module';
-import {NestjsFormDataModule} from "nestjs-form-data";
-import {AuthService} from "./auth/auth.service";
-import {JwtService} from "@nestjs/jwt";
+import { FilesModule } from './files/files.module';
+import {FilesService} from "./files/files.service";
 
 @Module({
   imports: [
@@ -24,9 +23,10 @@ import {JwtService} from "@nestjs/jwt";
       }),
       AuthModule,
       CategoriesModule,
+      FilesModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [FilesService],
 })
 export class AppModule {}
 
