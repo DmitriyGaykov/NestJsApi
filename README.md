@@ -58,6 +58,10 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 0ccde8d9973eac2443d2f6ea5dc43d9937cb4e54
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
@@ -71,3 +75,33 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+<<<<<<< HEAD
+=======
+=======
+## Requests
+
+### POST
+
+**/api/auth/reg** — SignUp user<br/>
+  body: name(string), password(string)<br/>
+  return: token or exception<br/>
+<br/>
+**/api/auth/login** — SignIp user<br/>
+  body: name(string), password(string)<br/>
+  return: token or exception<br/>
+<br/>
+**/api/auth/token-login** — SignIn with Token<br/>
+  cookie: jwt_spectrans: string<br/>
+  return: User Object<br/>
+
+**/api/categories/add** — Add new category<br/>
+  body: name(string)<br/>
+  cookie: jwt_spectrans: string<br/>
+  return: Category object(_id, name)<br/>
+
+### GET
+
+**/api/categories** — Get all categoriesy<br/>
+  return: Array of Category object
+
+>>>>>>> 0ccde8d9973eac2443d2f6ea5dc43d9937cb4e54

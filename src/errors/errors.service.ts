@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import {BadRequestException, HttpException, HttpStatus, Injectable} from '@nestjs/common';
+=======
+import {BadRequestException, Injectable} from '@nestjs/common';
+>>>>>>> 0ccde8d9973eac2443d2f6ea5dc43d9937cb4e54
 import {IError} from "./interfaces/ierror.interface";
 import {ValidationError} from "./interfaces/validationError.interface";
 
@@ -32,8 +36,11 @@ export class ErrorsService {
 
         return new BadRequestException(Object.assign({}, ...errs))
     }
+<<<<<<< HEAD
 
     static generateNoContentException(msg : string = 'No content') {
         return new HttpException(msg, HttpStatus.NO_CONTENT)
     }
+=======
+>>>>>>> 0ccde8d9973eac2443d2f6ea5dc43d9937cb4e54
 }

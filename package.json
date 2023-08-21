@@ -31,11 +31,17 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.6",
+<<<<<<< HEAD
     "date-fns": "^2.30.0",
     "dotenv": "^16.3.1",
     "express-types": "^0.0.4",
     "mongoose-unique-validator": "^4.0.0",
     "multer": "^1.4.5-lts.1",
+=======
+    "dotenv": "^16.3.1",
+    "express-types": "^0.0.4",
+    "mongoose-unique-validator": "^4.0.0",
+>>>>>>> 0ccde8d9973eac2443d2f6ea5dc43d9937cb4e54
     "nestjs-form-data": "^1.9.0",
     "path": "^0.12.7",
     "reflect-metadata": "^0.1.13",
@@ -50,7 +56,10 @@
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
     "@types/mongoose-unique-validator": "^1.0.7",
+<<<<<<< HEAD
     "@types/multer": "^1.4.7",
+=======
+>>>>>>> 0ccde8d9973eac2443d2f6ea5dc43d9937cb4e54
     "@types/node": "^20.3.1",
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
