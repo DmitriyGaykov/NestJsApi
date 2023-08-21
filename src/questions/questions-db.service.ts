@@ -44,7 +44,7 @@ export class QuestionsDbService {
         try {
             const question = await this.Question.findByIdAndRemove(_id)
 
-            if(question)
+            if(!question)
                 throw ''
 
             return question
