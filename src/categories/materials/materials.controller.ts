@@ -8,7 +8,7 @@ import {
     UsePipes
 } from '@nestjs/common';
 import {IMaterial} from "./interfaces/material.interface";
-import {FormDataRequest} from "nestjs-form-data";
+import {FormDataRequest, MemoryStoredFile} from "nestjs-form-data";
 import {AuthAs} from "../../decorators/auth-as/auth-as.decorator";
 import {Roles} from "../../users/interfaces/roles.enum";
 import {MaterialsService} from "./materials.service";
@@ -27,7 +27,9 @@ export class MaterialsController {
     @UsePipes(new MaterialTransformPipe())
     @FormDataRequest()
     async add(@Body() dto : AddDto, @Req() req : Request) : Promise<IMaterial> {
-        return this.materialService.add(dto, req['user']?._id, dto['img'], req)
+        const userId = req['user']?._id as string;
+        const img = dto['img'] as MemoryStoredFile;
+        return await this.materialService.add(dto, userId, img, req)
     }
 
     @Get(':id')

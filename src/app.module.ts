@@ -8,6 +8,7 @@ import {join} from "path";
 import { CategoriesModule } from './categories/categories.module';
 import { FilesModule } from './files/files.module';
 import {FilesService} from "./files/files.service";
+import { QuestionsModule } from './questions/questions.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import {FilesService} from "./files/files.service";
       AuthModule,
       CategoriesModule,
       FilesModule,
+      QuestionsModule,
   ],
   controllers: [],
   providers: [FilesService],
