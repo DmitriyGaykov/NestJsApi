@@ -5,28 +5,13 @@ import {FormDataRequest} from "nestjs-form-data";
 import {AuthPipe} from "./pipes/auth.pipe";
 import {SignInDto} from "./dto/signIn.dto";
 import {User} from "../users/interfaces/user.interface";
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-import {AuthGuard} from "@nestjs/passport";
->>>>>>> dd7cfa9b24ea7ee0764739a917ebb3e3c4e35499
->>>>>>> 0ccde8d9973eac2443d2f6ea5dc43d9937cb4e54
 import {Request} from "express";
 import {JwtAuthGuard} from "../guards/jwt-auth-guard/jwt-auth.guard";
 
 @Controller('api/auth')
 export class AuthController {
     constructor(
-<<<<<<< HEAD
         private readonly authService : AuthService
-=======
-<<<<<<< HEAD
-        private readonly authService : AuthService
-=======
-        private readonly authService : AuthService,
->>>>>>> dd7cfa9b24ea7ee0764739a917ebb3e3c4e35499
->>>>>>> 0ccde8d9973eac2443d2f6ea5dc43d9937cb4e54
     ) {
     }
     @Post('reg')
