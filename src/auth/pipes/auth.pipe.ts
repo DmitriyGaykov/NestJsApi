@@ -1,10 +1,10 @@
-import {ArgumentMetadata, BadRequestException, Injectable, ValidationPipe} from '@nestjs/common';
+import {ArgumentMetadata, BadRequestException, Injectable, ValidationPipe, ValidationPipeOptions} from '@nestjs/common';
 import {ErrorsService} from "../../errors/errors.service";
 
 @Injectable()
 export class AuthPipe extends ValidationPipe {
-  constructor() {
-    super();
+  constructor(options?: ValidationPipeOptions) {
+    super(options);
   }
 
   async transform(value: any, metadata: ArgumentMetadata) : Promise<any> {

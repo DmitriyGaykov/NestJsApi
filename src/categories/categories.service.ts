@@ -3,7 +3,7 @@ import {CategoriesDbService} from "./categories-db.service";
 import {CategoryWithoutId, ICategory} from "./interfaces/category.interface";
 import {ErrorsService} from "../errors/errors.service";
 import {MaterialsService} from "./materials/materials.service";
-import {IMaterial} from "./materials/interfaces/material.interface";
+import {IEditDto, IMaterial} from "./materials/interfaces/material.interface";
 
 @Injectable()
 export class CategoriesService {

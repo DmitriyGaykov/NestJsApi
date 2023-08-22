@@ -2,7 +2,7 @@ import {
     Body,
     Controller, Delete,
     Get,
-    Param,
+    Param, Patch,
     Post,
     Req,
     UsePipes
@@ -15,6 +15,8 @@ import {MaterialsService} from "./materials.service";
 import {AddDto} from "./dto/add.dto";
 import {MaterialTransformPipe} from "./pipes/material-transform.pipe";
 import {Request} from "express";
+import {EditDto} from "./dto/edit.dto";
+import {AuthPipe} from "../../auth/pipes/auth.pipe";
 
 @Controller('api/materials')
 export class MaterialsController {
@@ -41,5 +43,13 @@ export class MaterialsController {
     @AuthAs(Roles.admin)
     async deleteMaterial(@Param('id') id : string) : Promise<IMaterial> {
         return await this.materialService.deleteMaterial(id)
+    }
+
+    @Patch()
+    @AuthAs(Roles.admin)
+    @FormDataRequest()
+    @UsePipes(new MaterialTransformPipe())
+    async edit(@Body() dto : EditDto) : Promise<IMaterial> {
+        return await this.materialService.edit(dto)
     }
 }

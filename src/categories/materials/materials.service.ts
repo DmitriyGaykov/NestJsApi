@@ -1,6 +1,7 @@
 import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import {MaterialsDbService} from "./materials-db.service";
 import {
+    IEditDto,
     IMaterial,
     MaterialDto,
     MaterialWithoutId
@@ -66,5 +67,9 @@ export class MaterialsService {
 
     async getAllByCategory(categoryId : string) : Promise<IMaterial[]> {
         return this.materialDbService.getAllByCategory(categoryId)
+    }
+
+    async edit(material : IEditDto) : Promise<IMaterial> {
+        return this.materialDbService.edit(material)
     }
 }

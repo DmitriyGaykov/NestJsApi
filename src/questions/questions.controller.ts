@@ -8,7 +8,7 @@ import {AuthAs} from "../decorators/auth-as/auth-as.decorator";
 import {CanDoGuard} from "../guards/can-do/can-do.guard";
 import {FormDataRequest} from "nestjs-form-data";
 
-@Controller('questions')
+@Controller('/api/questions')
 export class QuestionsController {
     constructor(
         private readonly questionService : QuestionsService

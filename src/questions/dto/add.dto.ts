@@ -10,6 +10,6 @@ export class QuestionDto implements IQuestionDto {
     phone: string;
 
     @MinLength(10, { message: 'comment|Минимальный размер комментария 10 символов' })
-    @MaxLength(20, { message: 'comment|Максимальный размер комментария 300 символов' })
+    @MaxLength(300, { message: 'comment|Максимальный размер комментария 300 символов' })
     comment: string;
 }

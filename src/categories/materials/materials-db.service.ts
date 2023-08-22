@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common';
 import {InjectModel} from "@nestjs/mongoose";
-import {IMaterial, MaterialWithoutId} from "./interfaces/material.interface";
+import {IEditDto, IMaterial, MaterialWithoutId} from "./interfaces/material.interface";
 import {Document, Model} from "mongoose";
 import {ErrorsService} from "../../errors/errors.service";
 
@@ -26,13 +26,19 @@ export class MaterialsDbService {
         return this.Material.find({category : categoryId}).populate('user').populate('category');
     }
 
-    async edit({_id, name, description, price, img } : IMaterial) {
-        return this.populate(await this.Material.findByIdAndUpdate(_id, {
-            name,
-            description,
-            price,
-            img
-        }))
+    async edit({_id, name, description, price, img } : IMaterial | IEditDto) {
+        try {
+            const material = await this.Material.findByIdAndUpdate(_id, {
+                name,
+                description,
+                price,
+                img
+            })
+
+            return this.populate(material)
+        } catch (e) {
+            throw ErrorsService.generateBadRequestFromValidError(e)
+        }
     }
 
     async dell(_id : string) : Promise<IMaterial> {
