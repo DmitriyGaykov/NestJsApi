@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Post, UseGuards, UsePipes} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query, UseGuards, UsePipes} from '@nestjs/common';
 import {IQuestion} from "./interfaces/question.interface";
 import {AuthPipe} from "../auth/pipes/auth.pipe";
 import {QuestionDto} from "./dto/add.dto";
@@ -7,6 +7,7 @@ import {Roles} from "../users/interfaces/roles.enum";
 import {AuthAs} from "../decorators/auth-as/auth-as.decorator";
 import {CanDoGuard} from "../guards/can-do/can-do.guard";
 import {FormDataRequest} from "nestjs-form-data";
+import {ParseIntNullablePipe} from "../pipes/parse-int-nullable/parse-int-nullable.pipe";
 
 @Controller('/api/questions')
 export class QuestionsController {
@@ -24,8 +25,8 @@ export class QuestionsController {
 
     @Get()
     @AuthAs(Roles.admin)
-    async getAll() : Promise<IQuestion[]> {
-        return await this.questionService.getAll()
+    async getAll(@Query('page', ParseIntNullablePipe) page?: number) : Promise<IQuestion[]> {
+        return await this.questionService.getAll(page)
     }
 
     @Get(':id')

@@ -22,11 +22,15 @@ export class MaterialsDbService {
         return this.populate(await this.Material.findById(_id))
     }
 
-    async getAllByCategory(categoryId : string) : Promise<IMaterial[]> {
-        return this.Material.find({category : categoryId}).populate('user').populate('category');
+    async getAllByCategory(categoryId : string, take?: number, skip?: number) : Promise<IMaterial[]> {
+        return this.Material.find({category : categoryId})
+            .skip(skip)
+            .limit(take)
+            .populate('user')
+            .populate('category');
     }
 
-    async edit({_id, name, description, price, img } : IMaterial | IEditDto) {
+    async edit({_id, name, description, price, img} : IMaterial | IEditDto) {
         try {
             const material = await this.Material.findByIdAndUpdate(_id, {
                 name,

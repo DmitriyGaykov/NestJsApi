@@ -21,6 +21,7 @@ export const _JwtModule = JwtModule.registerAsync({
 
 @Module({
     imports: [
+
         _JwtModule,
         UsersModule,
         NestjsFormDataModule],

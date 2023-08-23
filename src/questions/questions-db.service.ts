@@ -22,8 +22,10 @@ export class QuestionsDbService {
         }
     }
 
-    async getAll() : Promise<IQuestion[]> {
-        return this.Question.find({})
+    async getAll(take?: number, skip?: number) : Promise<IQuestion[]> {
+        return this.Question.find()
+            .skip(skip)
+            .limit(take)
     }
 
     async get(_id: string) : Promise<IQuestion> {

@@ -10,9 +10,12 @@ import {FilesService} from "../../files/files.service";
 import {MemoryStoredFile} from "nestjs-form-data";
 import {Request} from "express";
 import {ErrorsService} from "../../errors/errors.service";
+import {extname} from "path";
 
 @Injectable()
 export class MaterialsService {
+    private readonly countMaterialsInPage = 5
+
     constructor(
         private readonly materialDbService : MaterialsDbService,
         private readonly filesService : FilesService
@@ -65,11 +68,45 @@ export class MaterialsService {
         }
     }
 
-    async getAllByCategory(categoryId : string) : Promise<IMaterial[]> {
-        return this.materialDbService.getAllByCategory(categoryId)
+    async getAllByCategory(categoryId : string, page?: number) : Promise<IMaterial[]> {
+        let take: number | undefined
+        let skip: number | undefined
+
+        if(page !== undefined) {
+            take = this.countMaterialsInPage
+            skip = page * this.countMaterialsInPage
+        }
+
+        return this.materialDbService.getAllByCategory(categoryId, take, skip)
     }
 
-    async edit(material : IEditDto) : Promise<IMaterial> {
-        return this.materialDbService.edit(material)
+    async edit(material : IEditDto, img : MemoryStoredFile) : Promise<IMaterial> {
+        const _material : IMaterial = await this.materialDbService.edit({
+            ...material,
+            img: undefined
+        })
+
+        if(!img)
+            return _material
+
+        const _img = _material.img
+        const _ext = this.filesService.getExt(_img)
+
+        const ext = this.filesService.getExt(img.originalName)
+
+        await this.filesService.deleteMaterialFile(_img)
+        this.filesService.rename(img, material._id)
+        await this.filesService.saveMaterialFile(img)
+
+        if(ext && ext === _ext) {
+            return _material
+        }
+
+        await this.filesService.saveMaterialFile(img)
+
+        return this.materialDbService.edit({
+            _id: material._id,
+            img: img.originalName
+        })
     }
 }

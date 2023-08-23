@@ -17,7 +17,7 @@ import {_JwtModule} from "../../auth/auth.module";
       }]),
       NestjsFormDataModule,
       UsersModule,
-      _JwtModule
+      _JwtModule,
   ],
   providers: [MaterialsService, MaterialsDbService, FilesService],
   controllers: [MaterialsController],

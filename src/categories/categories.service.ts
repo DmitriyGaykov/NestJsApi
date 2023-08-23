@@ -20,9 +20,9 @@ export class CategoriesService {
         return this.categoriesDbService.getAll()
     }
 
-    async getAllMaterialsByCategory(_id: string) : Promise<IMaterial[]> {
+    async getMaterialsByCategory(_id: string, page?: number) : Promise<IMaterial[]> {
         try {
-            return await this.materialsService.getAllByCategory(_id)
+            return await this.materialsService.getAllByCategory(_id, page)
         } catch {
             throw ErrorsService.generateNoContentException("Такой категории не существует")
         }

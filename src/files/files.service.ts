@@ -1,10 +1,12 @@
-import {Injectable} from '@nestjs/common';
+import {Injectable, Scope} from '@nestjs/common';
 import * as fs from "fs";
 import * as path from "path";
-import {extname} from "path";
 import {Request} from "express";
 import {MemoryStoredFile} from "nestjs-form-data";
-@Injectable()
+
+@Injectable({
+    scope: Scope.TRANSIENT
+})
 export class FilesService {
     static readonly materialsPath : string = path.resolve(__dirname, '../../public/img/materials')
     async saveMaterialFile(file : MemoryStoredFile) : Promise<void> {
@@ -12,7 +14,11 @@ export class FilesService {
     }
 
     rename(file : MemoryStoredFile, newName : string) : void {
-        file.originalName = newName + '.' + file.originalName.split('.')?.at(-1)
+        file.originalName = newName + '.' + this.getExt(file.originalName)
+    }
+
+    getExt(fileName : string) : string {
+        return fileName.split('.')?.at(-1)
     }
 
     async deleteMaterialFile(name : string) : Promise<void> {

@@ -4,6 +4,7 @@ import {QuestionsDbService} from "./questions-db.service";
 
 @Injectable()
 export class QuestionsService {
+    private readonly countElementInPage: number = 5
 
     constructor(
         private readonly questionDbService : QuestionsDbService
@@ -13,8 +14,16 @@ export class QuestionsService {
         return this.questionDbService.add(question)
     }
 
-    async getAll() : Promise<IQuestion[]> {
-        return this.questionDbService.getAll()
+    async getAll(page?: number) : Promise<IQuestion[]> {
+        let take : number | undefined
+        let skip : number | undefined
+
+        if(page !== undefined) {
+            take = this.countElementInPage
+            skip = this.countElementInPage * page
+        }
+
+        return this.questionDbService.getAll(take, skip)
     }
 
     async get(_id : string) : Promise<IQuestion> {

@@ -50,6 +50,8 @@ export class MaterialsController {
     @FormDataRequest()
     @UsePipes(new MaterialTransformPipe())
     async edit(@Body() dto : EditDto) : Promise<IMaterial> {
-        return await this.materialService.edit(dto)
+        const img = dto['img'] as MemoryStoredFile
+
+        return await this.materialService.edit(dto, img)
     }
 }

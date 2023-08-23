@@ -31,6 +31,7 @@ export class AuthController {
     @Post('token-login')
     @UseGuards(JwtAuthGuard)
     async signInWithToken(@Req() req : Request) : Promise<User> {
-        return this.authService.signInWithToken(req['user'])
+        const user = req['user'];
+        return this.authService.signInWithToken(user)
     }
 }
